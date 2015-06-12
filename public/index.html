@@ -1,0 +1,57 @@
+<!docType html>
+<html ng-app="scotchWeekMenu">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Week Menu</title>
+
+		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+		<style type="text/css">
+			html { overflow-y:scroll; }
+			body { padding-top: 50px; }
+			#weekmenu-list	{ margin-bottom: 30px; }
+		</style>
+
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	    <script src="core.js"></script>		
+
+	</head>
+
+	<body ng-controller="mainController">
+		<div class="container">
+	        <div class="jumbotron text-center">
+	            <h1>Number of menus <span class="label label-info">{{ weekMenus.length }}</span></h1>
+	        </div>			
+		</div>
+
+        <div id="weekmenu-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="The start Date" ng-model="formData.startDate">
+                        <input type="text" class="form-control input-lg text-center" placeholder="The end Date" ng-model="formData.endDate">
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createWeekMenu()">Add</button>
+                </form>
+            </div>
+        </div>        		
+
+        <div id="weekmenu-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="checkbox" ng-repeat="weekMenu in weekMenus">
+                    <label>
+                        <input type="checkbox" ng-click="deleteWeekMenu(weekMenu._id)"> {{ weekMenu.startDate }} - {{ weekMenu.endDate }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+	</body>
+
+</html>
